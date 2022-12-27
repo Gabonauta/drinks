@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:drinks/Services/drinks_service.dart';
+import 'package:drinks/screens/detail_drink.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,19 +15,50 @@ class CardTable extends StatelessWidget {
     return drinksService.alcoholic
         ? ListView.builder(
             itemBuilder: (context, index) {
-              return _SigleCard(
-                  icon: drinksService.drinks[index].strDrinkThumb,
-                  color: Colors.orange,
-                  text: drinksService.drinks[index].strDrink);
+              return GestureDetector(
+                onTap: () async {
+                  await drinksService
+                      .searchByName(drinksService.drinks[index].strDrink)
+                      .then((value) {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) =>
+                              const DetailDrinkScreen(),
+                          transitionDuration: const Duration(seconds: 1)),
+                    );
+                  });
+                },
+                child: _SigleCard(
+                    icon: drinksService.drinks[index].strDrinkThumb,
+                    color: Colors.orange,
+                    text: drinksService.drinks[index].strDrink),
+              );
             },
             itemCount: drinksService.drinks.length,
           )
         : ListView.builder(
             itemBuilder: (context, index) {
-              return _SigleCard(
-                  icon: drinksService.drinksNonAlcoholic[index].strDrinkThumb,
-                  color: Colors.white,
-                  text: drinksService.drinksNonAlcoholic[index].strDrink);
+              return GestureDetector(
+                onTap: () async {
+                  await drinksService
+                      .searchByName(
+                          drinksService.drinksNonAlcoholic[index].strDrink)
+                      .then((value) {
+                    Navigator.push(
+                      context,
+                      PageRouteBuilder(
+                          pageBuilder: (_, __, ___) =>
+                              const DetailDrinkScreen(),
+                          transitionDuration: const Duration(seconds: 1)),
+                    );
+                  });
+                },
+                child: _SigleCard(
+                    icon: drinksService.drinksNonAlcoholic[index].strDrinkThumb,
+                    color: Colors.white,
+                    text: drinksService.drinksNonAlcoholic[index].strDrink),
+              );
             },
             itemCount: drinksService.drinks.length,
           );
