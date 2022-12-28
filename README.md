@@ -45,3 +45,13 @@ https://user-images.githubusercontent.com/30781044/209842311-6a747ccc-ad79-4966-
 <p>Simple and complete state managment</p>
 <h3>Dio</h3>
 <p>Useful when we do a Http request</p>
+
+<h2>How to run</h2>
+ <p>You must have flutter 3 installed and a virtual or phisical device to lauch the app</p>
+ <p>here you cand find a quick guide to install and test flutter apps on your pc: https://docs.flutter.dev/get-started/test-drive</p>
+ <p>Adicionally heres my flutter doctor for a better comprehension</p>
+ ![image](https://user-images.githubusercontent.com/30781044/209844463-5ed87e7e-02be-4b59-8c6f-3a5e72201eb6.png)
+ <p>Note: the flutter version is on warning because i switch versions with git</p>
+
+ 
+
