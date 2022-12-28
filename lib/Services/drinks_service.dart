@@ -82,12 +82,27 @@ class DrinksProvider extends ChangeNotifier {
     return drinkSearched;
   }
 
+  Future<Detail> randomDrink() async {
+    var url = "https://thecocktaildb.com/api/json/v1/1/random.php";
+    var dio = Dio();
+    final response = await dio.get(url);
+    Detail drink = Detail.fromJson(response.data);
+    drinkSearched = drink;
+    print(drinkSearched.drinks[0]["idDrink"]);
+    notifyListeners();
+    return drinkSearched;
+  }
+
   void getSuggestionsByQuery(String searchTerm) {
     debouncer.value = "";
     debouncer.onValue = (value) async {
       //print("tenemos valor: $value");
-      final results = await searchByName(value);
-      _suggestionStreamController.add(results);
+      try {
+        final results = await searchByName(value);
+        _suggestionStreamController.add(results);
+      } catch (e) {
+        _suggestionStreamController.add(drinkSearched);
+      }
     };
     final timer = Timer.periodic(
       const Duration(milliseconds: 300),

@@ -1,4 +1,5 @@
 import 'package:drinks/screens/alcoholic_drinks.dart';
+import 'package:drinks/screens/detail_drink.dart';
 import 'package:drinks/screens/widgets/search/search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -71,6 +72,27 @@ class HomeScreen extends StatelessWidget {
                     child: const Text(
                       "Non Alcoholic",
                       style: TextStyle(fontSize: 35, color: Colors.white),
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.05,
+                  ),
+                  MaterialButton(
+                    color: Colors.black.withOpacity(0.5),
+                    onPressed: () async {
+                      await drinksService.randomDrink().then((value) {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              pageBuilder: (_, __, ___) =>
+                                  const DetailDrinkScreen(),
+                              transitionDuration: const Duration(seconds: 1)),
+                        );
+                      });
+                    },
+                    child: const Text(
+                      "Try it!",
+                      style: TextStyle(fontSize: 35, color: Colors.orange),
                     ),
                   ),
                 ],
