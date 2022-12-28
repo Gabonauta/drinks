@@ -1,4 +1,5 @@
 import 'package:drinks/screens/alcoholic_drinks.dart';
+import 'package:drinks/screens/widgets/search/search_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,6 +15,13 @@ class HomeScreen extends StatelessWidget {
         appBar: AppBar(
           centerTitle: true,
           title: const Text("Find your drink"),
+          actions: [
+            IconButton(
+              onPressed: () =>
+                  showSearch(context: context, delegate: DrinkSearchDelegate()),
+              icon: const Icon(Icons.search),
+            ),
+          ],
         ),
         body: Stack(
           children: [

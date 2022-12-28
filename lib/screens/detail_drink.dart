@@ -13,7 +13,9 @@ class DetailDrinkScreen extends StatelessWidget {
     const textStyle = TextStyle(fontSize: 20);
     const textStyle2 = TextStyle(fontSize: 20, color: Colors.orange);
     return Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar(
+          title: Text(drinksService.drinkSearched.drinks[0]["strDrink"]!),
+        ),
         body: SafeArea(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
